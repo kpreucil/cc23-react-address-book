@@ -7,7 +7,9 @@ var AddressForm = React.createClass({
             firstName: "",
             lastName: "",
             email: "",
-            number: ""
+            number: "",
+            bizName: "",
+            website: ""
         }
     },
     changeFirstName: function (evt) {
@@ -30,13 +32,23 @@ var AddressForm = React.createClass({
             number:evt.target.value
         })
     },
-    handleSubmit: function () {
-        this.props.addPerson();
+    changeBizName: function (evt) {
+        this.setState({
+            bizName:evt.target.value
+        })
+    },
+    changeWebsite: function (evt) {
+        this.setState({
+            website:evt.target.value
+        })
+    },
+    handleSubmit: function (evt) {
+        this.props.addBiz(this.state.firstName, this.state.lastName, this.state.email, this.state.number, this.state.bizName, this.state.website);
     },
     render: function () {
         return (
             <div>
-                <label >First Name </label>
+                <label>First Name </label>
                 {this.props.firstName}
                     <input 
                       type="text" 
@@ -45,7 +57,7 @@ var AddressForm = React.createClass({
                         <br /><br />
                 
                 {this.props.lastName}
-                <label >Last Name </label>
+                <label>Last Name </label>
                     <input 
                       type="text" 
                       value={this.state.lastName}
@@ -53,7 +65,7 @@ var AddressForm = React.createClass({
                     <br /><br />
                     
                 {this.props.email}
-                <label >Email </label>
+                <label>Email </label>
                      <input 
                       type="text" 
                       value={this.state.email}
@@ -61,11 +73,27 @@ var AddressForm = React.createClass({
                         <br /><br />
                  
                 {this.props.number}       
-                <label >Phone </label>
+                <label>Phone </label>
                     <input 
                       type="text" 
                       value={this.state.number}
                       onChange = {this.changeNumber} />
+                    <br /><br />
+                    
+                {this.props.bizName}       
+                <label>Business Name </label>
+                    <input 
+                      type="text" 
+                      value={this.state.bizName}
+                      onChange = {this.changeBizName} />
+                    <br /><br />
+                    
+                {this.props.website}       
+                <label >Website </label>
+                    <input 
+                      type="text" 
+                      value={this.state.website}
+                      onChange = {this.changeWebsite} />
                     <br /><br />
                 <button onClick = {this.handleSubmit}>Save</button>
             </div>
@@ -74,3 +102,4 @@ var AddressForm = React.createClass({
 });
 
 module.exports = AddressForm;
+
